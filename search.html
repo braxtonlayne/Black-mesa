@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Mesa Internal Database - Search</title>
+    <link rel="stylesheet" href="assets/master_stylesheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Page-specific styles for the search page layout */
+        /* Ensure the container uses the grid layout defined in the master stylesheet */
+        .container {
+            display: grid; /* Explicitly set display to grid */
+            grid-template-columns: 1fr 3fr; /* Two columns: sidebar and main content */
+            gap: 30px; /* Space between grid items */
+            /* Add fade-in animation here if not global */
+             opacity: 0;
+             animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* Fade-in Animation (if applied per page) */
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Ensure header, status bar, and footer span across all columns */
+        header, .system-status-bar, footer {
+            grid-column: 1 / -1;
+        }
+
+        /* Ensure sidebar is in the first column */
+        .sidebar {
+            grid-column: 1 / 2;
+        }
+
+        /* Ensure main content is in the second column */
+        .main-content {
+            grid-column: 2 / -1;
+        }
+
+        /* Responsive adjustments for grid layout */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr; /* Single column layout */
+                gap: 20px;
+            }
+            header, .sidebar, .main-content, .system-status-bar, footer {
+                grid-column: 1 / -1; /* All elements span full width */
+            }
+        }
+
+        /* --- Search Page Specific Styles --- */
+        .search-interface {
+            /* Use the section styling from the master stylesheet */
+            margin-bottom: 30px; /* Space below the search input section */
+        }
+
+        .search-input-group {
+            display: flex; /* Arrange input and button side-by-side */
+            gap: 10px; /* Space between input and button */
+            margin-bottom: 20px;
+        }
+
+        .search-input-group input[type="text"] {
+            flex-grow: 1; /* Allow input to take up available space */
+            padding: 10px;
+            background-color: #1a1a1a; /* Dark input background */
+            border: 1px solid #00aaff; /* Blue border */
+            color: #00ff00; /* Green text */
+            font-family: 'Roboto Mono', monospace;
+            font-size: 1em;
+            box-sizing: border-box;
+            border-radius: 4px;
+        }
+
+        .search-input-group input[type="text"]:focus {
+            outline: none;
+            border-color: #00ffff; /* Cyan border on focus */
+            box-shadow: 0 0 8px rgba(0, 255, 255, 0.5); /* Cyan glow on focus */
+        }
+
+        .search-input-group button {
+            background-color: #00aaff; /* Blue button background */
+            color: #121212; /* Dark text */
+            font-family: 'Inter', sans-serif;
+            font-size: 1em;
+            font-weight: 600;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            text-transform: uppercase;
+        }
+
+        .search-input-group button:hover {
+            background-color: #00ffff; /* Cyan on hover */
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.6); /* Cyan glow on hover */
+        }
+
+        .search-results {
+            /* Use the section styling from the master stylesheet */
+        }
+
+        .search-results h3 {
+             font-size: 1.4em;
+             color: #00ffff; /* Cyan for results title */
+             margin-top: 0;
+             margin-bottom: 15px;
+             border-bottom: 1px dotted #444;
+             padding-bottom: 8px;
+             font-family: 'Inter', sans-serif;
+             font-weight: 600;
+        }
+
+        .result-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .result-list li {
+            margin-bottom: 15px; /* Space between results */
+            padding-left: 15px;
+            position: relative;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.95em;
+            border-bottom: 1px dotted #333; /* Separator between results */
+            padding-bottom: 10px;
+        }
+
+        .result-list li::before {
+            content: '> '; /* Custom bullet */
+            color: #ffff00; /* Yellow */
+            position: absolute;
+            left: 0;
+            font-weight: 700;
+        }
+
+        .result-list a {
+            color: #e0e0e0; /* Lighter grey for result title */
+            text-decoration: none;
+            transition: color 0.2s;
+            font-weight: 700; /* Bold title */
+        }
+
+        .result-list a:hover {
+            color: #00ffff; /* Cyan on hover */
+            text-decoration: underline;
+        }
+
+        .result-snippet {
+            font-size: 0.9em;
+            color: #cccccc; /* Grey for snippet */
+            margin-top: 5px;
+            font-family: 'Inter', sans-serif; /* Sans-serif for readability */
+        }
+
+        .result-snippet strong {
+            color: #ffff00; /* Highlight search term */
+            font-weight: 700;
+        }
+
+        .result-code {
+            font-size: 0.85em;
+            color: #888; /* Muted grey for code */
+            margin-top: 5px;
+            display: block; /* On its own line */
+        }
+
+         /* Back button style (reusing the class from document.html) */
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9em;
+            color: #00ffff; /* Cyan */
+            text-decoration: none;
+            border: 1px dotted #00ffff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #00ffff;
+            color: #121212;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://placehold.co/120x120/1e1e1e/00aaff?text=BM+Logo" alt="Black Mesa Logo" class="logo">
+            <h1>Black Mesa Research Facility</h1>
+            <h2>Internal Database Repository</h2>
+            <p class="classification">WARNING: TOP SECRET / UMBRA / SPECIAL ACCESS REQUIRED</p>
+            <p class="remote-access-info">REMOTE ACCESS DETECTED - LOGGED FROM <span id="simulated-ip">[SIMULATED IP ADDRESS]</span></p>
+        </header>
+
+        <div class="sidebar">
+            <div class="terminal-info">
+                <h3>Terminal Information</h3>
+                <p>User: <strong><span id="simulated-user-id">[SIMULATED USER ID]</span><span class="blinking-cursor">|</span></strong></p>
+                <p>Terminal ID: <strong>BM-TERM-<span id="terminal-id"></span></strong></p>
+                <p>Access Level: <strong>UMBRA</strong></p>
+                <p>Connection: <strong>SECURE / ENCRYPTED</strong></p>
+                <p>Last Login: <strong><span id="last-login-date"></span> <span id="last-login-time"></span></strong></p>
+                <p>Status: <strong>ACTIVE / REMOTE</strong></p>
+                <p>Encryption: <strong>AES-256</strong></p>
+            </div>
+
+            <nav>
+                 <h3>Navigation</h3>
+                <ul>
+                    <li><a href="archive.html">Document Browser</a></li> <li><a href="search.html">Search Database</a></li> <li><a href="transcripts.html">Meeting Transcripts</a></li> <li><a href="referenced.html">Referenced Documents</a></li> <li><a href="home.html#system-announcements">System Announcements</a></li>
+                    <li><a href="home.html#quick-links">Quick Links</a></li>
+                </ul>
+            </nav>
+             <p class="keyboard-hint" style="text-align: center; margin-top: 30px; font-size: 0.8em; color: #555;">[ Use Navigation Links Above ]</p>
+        </div>
+
+        <div class="main-content">
+             <div class="section search-interface">
+                <h2>Search Database</h2>
+                <div class="search-input-group">
+                    <input type="text" id="search-query" placeholder="Enter search terms...">
+                    <button id="search-button">Search</button>
+                </div>
+                <p style="font-family: 'Roboto Mono', monospace; font-size: 0.85em; color: #888;">Advanced options coming soon...</p>
+            </div>
+
+            <div class="section search-results">
+                <h3 id="results-heading">Search Results</h3>
+                <ul id="results-list" class="result-list">
+                    <!-- Search results will be loaded here by JavaScript -->
+                </ul>
+                 <p id="no-results-message" style="font-family: 'Roboto Mono', monospace; font-size: 0.9em; color: #888; display: none;">No results found for your query.</p>
+            </div>
+
+             <a href="home.html#search" class="back-button">&lt;&lt; Back to Home</a>
+
+        </div>
+
+        <div class="system-status-bar">
+            <p>System Status: <strong>ONLINE</strong> | Current Time: <strong><span id="current-time"></span></strong> | Access Level: <strong>UMBRA</strong> | Terminal: <strong><span id="status-bar-terminal-id"></span></strong></p>
+        </div>
+
+        <footer>
+            <p>&copy; 1998-2025 Black Mesa Research Facility. All Rights Reserved.</p>
+            <p>Internal Use Only.</p>
+        </footer>
+    </div>
+
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/terminal.js"></script>
+    <script src="assets/js/time.js"></script>
+    <script src="assets/js/search.js"></script>
+
+</body>
+</html>

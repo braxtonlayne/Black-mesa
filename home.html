@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Mesa Internal Database - Home</title>
+    <link rel="stylesheet" href="assets/master_stylesheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Page-specific styles for the home page layout */
+        /* Ensure the container uses the grid layout defined in the master stylesheet */
+        .container {
+            display: grid; /* Explicitly set display to grid */
+            grid-template-columns: 1fr 3fr; /* Two columns: sidebar and main content */
+            gap: 30px; /* Space between grid items */
+            /* Add fade-in animation here if not global */
+             opacity: 0;
+             animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* Fade-in Animation (if applied per page) */
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Ensure header, status bar, and footer span across all columns */
+        header, .system-status-bar, footer {
+            grid-column: 1 / -1;
+        }
+
+        /* Ensure sidebar is in the first column */
+        .sidebar {
+            grid-column: 1 / 2;
+        }
+
+        /* Ensure main content is in the second column */
+        .main-content {
+            grid-column: 2 / -1;
+        }
+
+        /* Responsive adjustments for grid layout */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr; /* Single column layout */
+                gap: 20px;
+            }
+            header, .sidebar, .main-content, .system-status-bar, footer {
+                grid-column: 1 / -1; /* All elements span full width */
+            }
+        }
+
+         /* Style for the keyboard interaction hint */
+         .keyboard-hint {
+            text-align: center;
+            margin-top: 30px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.8em;
+            color: #555;
+         }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://placehold.co/120x120/1e1e1e/00aaff?text=BM+Logo" alt="Black Mesa Logo" class="logo">
+            <h1>Black Mesa Research Facility</h1>
+            <h2>Internal Database Repository</h2>
+            <p class="classification">WARNING: TOP SECRET / UMBRA / SPECIAL ACCESS REQUIRED</p>
+            <p class="remote-access-info">REMOTE ACCESS DETECTED - LOGGED FROM <span id="simulated-ip">[SIMULATED IP ADDRESS]</span></p>
+        </header>
+
+        <div class="sidebar">
+            <div class="terminal-info">
+                <h3>Terminal Information</h3>
+                <p>User: <strong><span id="simulated-user-id">[SIMULATED USER ID]</span><span class="blinking-cursor">|</span></strong></p>
+                <p>Terminal ID: <strong>BM-TERM-<span id="terminal-id"></span></strong></p>
+                <p>Access Level: <strong>UMBRA</strong></p>
+                <p>Connection: <strong>SECURE / ENCRYPTED</strong></p>
+                <p>Last Login: <strong><span id="last-login-date"></span> <span id="last-login-time"></span></strong></p>
+                <p>Status: <strong>ACTIVE / REMOTE</strong></p>
+                <p>Encryption: <strong>AES-256</strong></p>
+            </div>
+
+            <nav>
+                 <h3>Navigation</h3>
+                <ul>
+                    <li><a href="archive.html">Document Browser</a></li> <li><a href="search.html">Search Database</a></li> <li><a href="transcripts.html">Meeting Transcripts</a></li> <li><a href="referenced.html">Referenced Documents</a></li> <li><a href="#system-announcements">System Announcements</a></li>
+                    <li><a href="#quick-links">Quick Links</a></li>
+                </ul>
+            </nav>
+             <p class="keyboard-hint" style="text-align: center; margin-top: 30px; font-size: 0.8em; color: #555;">[ Use Navigation Links Above ]</p>
+        </div>
+
+        <div class="main-content">
+             <div class="system-message-area">
+                 <span id="dynamic-system-message">Initializing system modules...</span>
+             </div>
+
+            <div id="recent-updates-section" class="section recent-updates">
+                <h2>Recent Updates</h2>
+                <ul>
+                    <li><a href="document.html?doc=BM-HIST-5280">[BM-HIST-5280] - History of Site 12 Added <span>(04/27/2025)</span></a></li>
+                    <li><a href="document.html?doc=BM-PROT-SEC-001">[BM-PROT-SEC-001] - Revised Standard Security Protocols <span>(04/25/2025)</span></a></li>
+                    <li><a href="transcripts.html?id=003">[TRANSCRIPT-003] - Briefing on Lazarus Initiative Progress <span>(04/24/2025)</span></a></li>
+                    <li><a href="referenced.html#ref-bm-proj-laz-005">[REFERENCED] - BM-PROJ-LAZ-005 Mentioned in Transcript-003 <span>(04/24/2025)</span></a></li>
+                     <li><a href="document.html?doc=BM-FAC-NM-001">[BM-FAC-NM-001] - Site 01 (New Mexico) Facility Overview <span>(04/20/2025)</span></a></li>
+                </ul>
+            </div>
+
+             <div id="system-announcements-section" class="section system-announcements">
+                 <h2>System Announcements</h2>
+                 <ul>
+                     <li>All personnel are reminded to adhere to updated security protocol BM-PROT-SEC-001.</li>
+                     <li>Scheduled system maintenance on 05/01/2025 0200-0400 local time. Database access may be intermittent.</li>
+                     <li>New documents added to the 'Facility Network' category.</li>
+                     <li>Review of Project LAZARUS documentation is mandatory for all Level 4 personnel.</li>
+                 </ul>
+            </div>
+
+            <div class="section">
+                <h2>Access Information</h2>
+                <p>This terminal provides authorized personnel access to classified Black Mesa Research Facility documentation.</p>
+                <p>All access is logged and monitored. Unauthorized access is strictly prohibited and will result in immediate termination and disciplinary action.</p>
+                <p>Ensure you are accessing from a secure, approved terminal for full functionality and reduced monitoring flags.</p>
+            </div>
+
+             <div id="quick-links-section" class="section quick-links">
+                <h2>Quick Links</h2>
+                <ul>
+                    <li><a href="archive.html?category=security">Security Protocols Index</a></li>
+                    <li><a href="archive.html?category=lazarus">LAZARUS Initiative Documents</a></li>
+                    <li><a href="search.html?query=xen">Search for 'Xen' related documents</a></li>
+                     <li><a href="archive.html?category=facilities">Facility Network Overview</a></li>
+                </ul>
+            </div>
+
+             <p class="keyboard-hint">[ Use Navigation Links in the Sidebar Above to Access Database Sections ]</p>
+
+        </div>
+
+        <div class="system-status-bar">
+            <p>System Status: <strong>ONLINE</strong> | Current Time: <strong><span id="current-time"></span></strong> | Access Level: <strong>UMBRA</strong> | Terminal: <strong><span id="status-bar-terminal-id"></span></strong></p>
+        </div>
+
+        <footer>
+            <p>&copy; 1998-2025 Black Mesa Research Facility. All Rights Reserved.</p>
+            <p>Internal Use Only.</p>
+        </footer>
+    </div>
+
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/terminal.js"></script>
+    <script src="assets/js/messages.js"></script>
+    <script src="assets/js/time.js"></script>
+    <script src="assets/js/home.js"></script>
+
+</body>
+</html>

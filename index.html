@@ -1,1 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Mesa Internal Database - Login</title>
+    <link rel="stylesheet" href="assets/master_stylesheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Page-specific styles for the login page layout */
+        /* Override the grid layout from the master stylesheet for this simple page */
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px; /* Space between header, login form, and footer */
+            /* Add fade-in animation here if not global */
+             opacity: 0;
+             animation: fadeIn 1s ease-out forwards;
+        }
 
+         /* Fade-in Animation (if applied per page) */
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+
+        /* Adjust header, status bar, and footer to span full width in this flex layout */
+        header, .system-status-bar, footer {
+            width: 100%;
+            max-width: 1000px; /* Match container max-width */
+            grid-column: auto; /* Remove grid column spanning defined in master stylesheet */
+        }
+
+        /* Allow login-container to be centered by margin: auto from master_stylesheet */
+        .login-container {
+             grid-column: auto; /* Remove grid column spanning defined in master stylesheet */
+        }
+
+        /* Hide sidebar and main content divs on the login page */
+        .sidebar, .main-content {
+            display: none;
+        }
+
+         /* Style for the keyboard hint on the login page */
+         .login-hint {
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.8em;
+            color: #555;
+         }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://placehold.co/120x120/1e1e1e/00aaff?text=BM+Logo" alt="Black Mesa Logo" class="logo">
+            <h1>Black Mesa Research Facility</h1>
+            <h2>Internal Database Repository</h2>
+            <p class="classification">WARNING: TOP SECRET / UMBRA / SPECIAL ACCESS REQUIRED</p>
+            <p class="remote-access-info">REMOTE ACCESS DETECTED - LOGGED FROM <span id="simulated-ip">[SIMULATED IP ADDRESS]</span></p>
+        </header>
+
+        <div class="login-container">
+            <h2>System Login</h2>
+            <form id="login-form" class="login-form" action="home.html" method="get"> <label for="user_id">User ID:</label>
+                <input type="text" id="user_id" name="user_id" required>
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+
+                <button type="submit" id="login-button">Access Database</button>
+            </form>
+             <p class="login-hint">[ Press ENTER to Submit ]</p>
+        </div>
+
+        <div class="system-status-bar">
+            <p>System Status: <strong>ONLINE</strong> | Current Time: <strong><span id="current-time"></span></strong> | Access Level: <strong>PENDING</strong> | Terminal: <strong><span id="status-bar-terminal-id"></span></strong></p>
+        </div>
+
+
+        <footer>
+            <p>&copy; 1998-2025 Black Mesa Research Facility. All Rights Reserved.</p>
+            <p>Internal Use Only.</p>
+        </footer>
+    </div>
+
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/terminal.js"></script>
+    <script src="assets/js/time.js"></script>
+    <script src="assets/js/login.js"></script>
+
+</body>
+</html>

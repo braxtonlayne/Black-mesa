@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Mesa Internal Database - Document Viewer</title>
+    <link rel="stylesheet" href="assets/master_stylesheet.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <style>
+        /* Page-specific styles for the document viewer layout */
+        /* Ensure the container uses the grid layout defined in the master stylesheet */
+        .container {
+            display: grid; /* Explicitly set display to grid */
+            grid-template-columns: 1fr 3fr; /* Two columns: sidebar and main content */
+            gap: 30px; /* Space between grid items */
+            /* Add fade-in animation here if not global */
+             opacity: 0;
+             animation: fadeIn 1s ease-out forwards;
+        }
+
+        /* Fade-in Animation (if applied per page) */
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Ensure header, status bar, and footer span across all columns */
+        header, .system-status-bar, footer {
+            grid-column: 1 / -1;
+        }
+
+        /* Ensure sidebar is in the first column */
+        .sidebar {
+            grid-column: 1 / 2;
+        }
+
+        /* Ensure main content is in the second column */
+        .main-content {
+            grid-column: 2 / -1;
+            min-width: 0; /* Allow content to shrink within the grid column */
+        }
+
+        /* Responsive adjustments for grid layout */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr; /* Single column layout */
+                gap: 20px;
+            }
+            header, .sidebar, .main-content, .system-status-bar, footer {
+                grid-column: 1 / -1; /* All elements span full width */
+            }
+        }
+
+        /* --- Document Viewer Specific Styles --- */
+        .document-viewer {
+            background-color: #252525; /* Same background as sections */
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 25px; /* More padding for document content */
+            background-color: #252525; /* Same background as sections */
+            border: 1px solid #444;
+            border-radius: 5px;
+            padding: 25px; /* More padding for document content */
+            box-sizing: border-box;
+            position: relative;
+            /* Removed overflow: hidden; to allow content to be visible and scrollable */
+            /* Removed overflow-y: auto as per user feedback */
+            /* Removed width: 100%; to allow it to fit within the grid column */
+        }
+
+        .document-header-info {
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9em;
+            color: #cccccc;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px dotted #444;
+        }
+
+        .document-header-info p {
+            margin-bottom: 8px;
+        }
+
+        .document-header-info strong {
+            color: #00ffff; /* Cyan for highlighted info */
+            font-weight: 700;
+            margin-right: 10px; /* Space after the label */
+        }
+
+        .document-content {
+            font-family: 'Inter', sans-serif; /* Use sans-serif for main content readability */
+            font-size: 1em;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+            word-wrap: break-word; /* Ensure long words break and wrap */
+            overflow-wrap: break-word; /* Ensure long words break and wrap */
+        }
+
+        /* Style for preformatted text and code blocks within document content */
+        .document-content pre,
+        .document-content code {
+            white-space: pre-wrap; /* Allow wrapping within preformatted text */
+            word-wrap: break-word; /* Ensure long words break within preformatted text */
+        }
+
+        .document-content h3 {
+            font-family: 'Inter', sans-serif; /* Ensure headings within content use sans-serif */
+            color: #00aaff; /* Blue for content headings */
+            margin-top: 20px;
+            margin-bottom: 10px;
+            border-bottom: 1px dotted #333;
+            padding-bottom: 5px;
+             font-size: 1.3em;
+             font-weight: 600;
+        }
+
+        .document-content p {
+            margin-bottom: 15px;
+            color: #e0e0e0; /* Ensure paragraph color is correct */
+        }
+
+        .document-content ul,
+        .document-content ol {
+            margin-bottom: 15px;
+            padding-left: 20px;
+        }
+
+        .document-content li {
+            margin-bottom: 8px;
+        }
+
+        /* Style for Redacted Text */
+        .redacted {
+            background-color: #000; /* Solid black bar */
+            color: transparent; /* Hide text */
+            user-select: none; /* Prevent text selection */
+            padding: 0 5px; /* Add some padding */
+            border-bottom: 2px solid #ff0000; /* Red line below */
+            font-family: 'Roboto Mono', monospace; /* Monospace for redacted blocks */
+        }
+
+        /* Style for Internal Document Links (Placeholder) */
+        .document-content a {
+            color: #ffff00; /* Yellow for internal links */
+            text-decoration: underline;
+            transition: color 0.2s;
+        }
+
+        .document-content a:hover {
+            color: #00ffff; /* Cyan on hover */
+        }
+
+        /* TLDR / OOC Summary Section */
+        .tldr-section {
+            margin-top: 30px;
+            padding: 15px;
+            border: 1px dashed #ffff00; /* Yellow dashed border */
+            border-radius: 5px;
+            background-color: #333; /* Slightly different background */
+        }
+
+        .tldr-section h3 {
+            font-family: 'Roboto Mono', monospace; /* Monospace for TLDR title */
+            color: #ffff00; /* Yellow */
+            margin-top: 0;
+            margin-bottom: 10px;
+            border-bottom: 1px dotted #ffff00;
+            padding-bottom: 5px;
+             font-size: 1.1em;
+             font-weight: 700;
+        }
+
+        .tldr-section p {
+            font-family: 'Inter', sans-serif; /* Sans-serif for TLDR content */
+            font-size: 0.95em;
+            color: #cccccc;
+        }
+
+         /* Back button style */
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9em;
+            color: #00ffff; /* Cyan */
+            text-decoration: none;
+            border: 1px dotted #00ffff;
+            padding: 5px 10px;
+            border-radius: 3px;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .back-button:hover {
+            background-color: #00ffff;
+            color: #121212;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="https://placehold.co/120x120/1e1e1e/00aaff?text=BM+Logo" alt="Black Mesa Logo" class="logo">
+            <h1>Black Mesa Research Facility</h1>
+            <h2>Internal Database Repository</h2>
+            <p class="classification">WARNING: TOP SECRET / UMBRA / SPECIAL ACCESS REQUIRED</p>
+            <p class="remote-access-info">REMOTE ACCESS DETECTED - LOGGED FROM <span id="simulated-ip">[SIMULATED IP ADDRESS]</span></p>
+        </header>
+
+        <div class="sidebar">
+            <div class="terminal-info">
+                <h3>Terminal Information</h3>
+                <p>User: <strong><span id="simulated-user-id">[SIMULATED USER ID]</span><span class="blinking-cursor">|</span></strong></p>
+                <p>Terminal ID: <strong>BM-TERM-<span id="terminal-id"></span></strong></p>
+                <p>Access Level: <strong>UMBRA</strong></p>
+                <p>Connection: <strong>SECURE / ENCRYPTED</strong></p>
+                <p>Last Login: <strong><span id="last-login-date"></span> <span id="last-login-time"></span></strong></p>
+                <p>Status: <strong>ACTIVE / REMOTE</strong></p>
+                <p>Encryption: <strong>AES-256</strong></p>
+            </div>
+
+            <nav>
+                 <h3>Navigation</h3>
+                <ul>
+                    <li><a href="archive.html">Document Browser</a></li> <li><a href="search.html">Search Database</a></li> <li><a href="transcripts.html">Meeting Transcripts</a></li> <li><a href="referenced.html">Referenced Documents</a></li> <li><a href="home.html#system-announcements">System Announcements</a></li>
+                    <li><a href="home.html#quick-links">Quick Links</a></li>
+                </ul>
+            </nav>
+             <p class="keyboard-hint" style="text-align: center; margin-top: 30px; font-size: 0.8em; color: #555;">[ Use Navigation Links Above ]</p>
+        </div>
+
+        <div class="main-content">
+             <div class="document-viewer">
+                <div id="document-header-info" class="document-header-info">
+                    <p><strong>DOCUMENT CODE:</strong> <span id="doc-code">Loading...</span></p>
+                    <p><strong>TITLE:</strong> <span id="doc-title">Loading...</span></p>
+                    <p><strong>SECURITY CLASSIFICATION:</strong> <span id="doc-classification">Loading...</span></p>
+                    <p><strong>ACCESS LEVEL:</strong> <span id="doc-access-level">Loading...</span></p>
+                    <p><strong>LAST UPDATED:</strong> <span id="doc-last-updated">Loading...</span></p>
+                </div>
+
+                <div id="document-content" class="document-content">
+                    <!-- Document content will be loaded here by JavaScript -->
+                </div>
+
+                <a href="archive.html" class="back-button">&lt;&lt; Back to Document Browser</a> </div>
+
+        </div>
+
+        <div class="system-status-bar">
+            <p>System Status: <strong>ONLINE</strong> | Current Time: <strong><span id="current-time"></span></strong> | Access Level: <strong>UMBRA</strong> | Terminal: <strong><span id="status-bar-terminal-id"></span></strong></p>
+        </div>
+
+        <footer>
+            <p>&copy; 1998-2025 Black Mesa Research Facility. All Rights Reserved.</p>
+            <p>Internal Use Only.</p>
+        </footer>
+    </div>
+
+    <script src="assets/js/utils.js"></script>
+    <script src="assets/js/terminal.js"></script>
+    <script src="assets/js/time.js"></script>
+    <script src="assets/js/document.js"></script>
+
+</body>
+</html>
