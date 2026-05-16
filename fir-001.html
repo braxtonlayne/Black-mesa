@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OSC :: FIR-001 :: FIRST CONTACT EVENT :: UMBRA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/fir.css">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════
+     BOOT OVERLAY
+══════════════════════════════════════════ -->
+<div class="boot-overlay" id="bootOverlay">
+    <div class="boot-frame">
+        <div class="boot-content" id="bootContent"></div>
+        <div class="boot-cursor-line"><span class="boot-cursor">█</span></div>
+    </div>
+    <div class="boot-skip" id="bootSkip">[ CLICK ANYWHERE TO SKIP ]</div>
+</div>
+
+<!-- SCROLL PROGRESS -->
+<div class="scroll-progress-track">
+    <div class="scroll-progress-fill" id="scrollProgress"></div>
+</div>
+
+<!-- CLASSIFICATION BANNER TOP -->
+<div class="classification-banner top">
+    ⚠ &nbsp; UMBRA/OSC EYES ONLY — TIER 1 DISTRIBUTION ONLY &nbsp; ⚠
+</div>
+
+<!-- ══════════════════════════════════════════
+     DOCUMENT HEADER
+══════════════════════════════════════════ -->
+<header class="document-header fir-header">
+    <div class="header-corner tl">OSC-FIR-001</div>
+    <div class="header-corner tr">FIRST IN CLASS</div>
+    <div class="header-corner bl">UMBRA</div>
+    <div class="header-corner br">TIER 1 ONLY</div>
+
+    <div class="header-inner">
+        <div class="header-seal fir-seal">⬡</div>
+        <div class="fir-doc-type">FIELD INTELLIGENCE REPORT</div>
+        <h1>FIRST CONTACT EVENT</h1>
+        <h2>YAUTJA EMPIRE — INITIAL DIPLOMATIC SESSION</h2>
+
+        <div class="header-divider"></div>
+
+        <div class="report-meta-grid">
+            <div class="report-meta-cell">
+                <span class="rmc-label">Report Designation</span>
+                <span class="rmc-value">OSC-FIR-001 &nbsp;·&nbsp; FIRST IN CLASS</span>
+            </div>
+            <div class="report-meta-cell">
+                <span class="rmc-label">Classification</span>
+                <span class="rmc-value red">UMBRA / OSC EYES ONLY — TIER 1 DISTRIBUTION</span>
+            </div>
+            <div class="report-meta-cell">
+                <span class="rmc-label">Reporting Officer</span>
+                <span class="rmc-value rmc-redacted" title="TIER 1 AUTHORIZATION REQUIRED">[IDENTITY REDACTED — TIER 1 AUTHORIZATION REQUIRED]</span>
+            </div>
+            <div class="report-meta-cell">
+                <span class="rmc-label">Total Distribution</span>
+                <span class="rmc-value">11 copies — Council Members Only — Physical Only</span>
+            </div>
+            <div class="report-meta-cell">
+                <span class="rmc-label">Date of Event</span>
+                <span class="rmc-value rmc-pending">⧖ &nbsp; PENDING COUNCIL VERIFICATION</span>
+            </div>
+            <div class="report-meta-cell">
+                <span class="rmc-label">Date Filed</span>
+                <span class="rmc-value rmc-pending">⧖ &nbsp; PENDING COUNCIL VERIFICATION</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- ══════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════ -->
+<nav class="table-of-contents" id="toc">
+    <div class="toc-label">DOCUMENT INDEX</div>
+    <h3>SECTION NAVIGATION</h3>
+    <ul>
+        <li><a href="#preamble"        class="toc-link">00. Preamble — Observer Context</a></li>
+        <li><a href="#section-i"       class="toc-link">01. Background &amp; Context</a></li>
+        <li><a href="#section-ii"      class="toc-link">02. Event Log</a></li>
+        <li><a href="#section-iii"     class="toc-link">03. Technical Anomaly — Equipment Failure</a></li>
+        <li><a href="#section-iv"      class="toc-link">04. Intelligence Assessment</a></li>
+        <li><a href="#section-v"       class="toc-link">05. Recommendations</a></li>
+        <li><a href="#section-vi"      class="toc-link">06. Classification &amp; Distribution</a></li>
+    </ul>
+</nav>
+
+<!-- ══════════════════════════════════════════
+     MAIN DOCUMENT CONTENT
+══════════════════════════════════════════ -->
+<main class="document-content">
+
+    <!-- ─── 00. PREAMBLE ──────────────────────────────── -->
+    <section id="preamble">
+        <h2>00 &mdash; PREAMBLE — OBSERVER CONTEXT</h2>
+
+        <div class="content-block">
+            <p>This report documents the first recorded diplomatic contact between representatives of the human species and an extraterrestrial intelligence, herein designated the <strong>YAUTJA EMPIRE</strong>, based on identification provided by the alien delegation itself.</p>
+
+            <p>OSC presence at this event was <strong>unofficial and unsanctioned by the convening multinational body.</strong> The reporting officer attended as an embedded observer within the larger U.S. advisory contingent — presence justified to external parties under standard diplomatic staffing protocols. No other participant in the chamber was aware of OSC affiliation or the secondary intelligence collection mission being conducted.</p>
+        </div>
+
+        <div class="preamble-alert">
+            <div class="preamble-alert-header">
+                <span class="preamble-alert-badge">⚠ OPERATIONAL NOTE</span>
+                <span class="preamble-alert-sub">PERTAINS TO INTELLIGENCE COLLECTION INTEGRITY</span>
+            </div>
+            <div class="preamble-alert-body">
+                <p>Body camera equipment carried by the reporting officer <strong>ceased functioning upon close proximity to the Yautja delegation.</strong> All recorded footage rendered as uniform static and is deemed entirely unusable for evidentiary or archival purposes. This report is therefore compiled exclusively from <strong>direct human observation and handwritten notation.</strong> The mechanism responsible for this equipment failure is unknown. The implications are assessed in Section III.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ─── 01. BACKGROUND & CONTEXT ─────────────────── -->
+    <section id="section-i">
+        <h2>01 &mdash; BACKGROUND &amp; CONTEXT</h2>
+
+        <div class="content-block">
+            <p>The convening authority for this meeting is a <strong>multinational delegation operating under NATO-adjacent authorization.</strong> Based on available intelligence, the United States government — at the publicly visible level — extended diplomatic clearance to this body to conduct initial contact on humanity's collective behalf. The U.S. government's formal posture is therefore that of a <strong>sanctioned observer,</strong> with Secretary Ward serving as the senior diplomat at the table.</p>
+
+            <p>The Yautja Empire's awareness of Earth predates this meeting by an undetermined period. Their willingness to engage suggests this contact was initiated on their terms, at a time of their choosing.</p>
+        </div>
+
+        <div class="critical-intel">
+            <div class="critical-intel-header">
+                <span>CRITICAL INTELLIGENCE NOTE</span>
+                <span class="ci-sub">ASSESSED INDEPENDENTLY — THIS OFFICE</span>
+            </div>
+            <div class="critical-intel-body">
+                <p>In a brief exchange during pre-session observations, it was determined that the Yautja delegation does not restrict its diplomatic availability exclusively to the approved multinational body. They will engage with <strong>any party that initiates contact.</strong> This is of acute strategic relevance to OSC long-term planning and is addressed in detail in Section IV.</p>
+            </div>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ─── 02. EVENT LOG ────────────────────────────── -->
+    <section id="section-ii">
+        <h2>02 &mdash; EVENT LOG</h2>
+        <p class="section-description">Compiled from direct observation and handwritten notation. Electronic recording deemed unusable. See Section III.</p>
+
+        <div class="event-log">
+
+            <!-- DAY ONE MARKER -->
+            <div class="event-day-marker">
+                <span class="edm-line"></span>
+                <span class="edm-label">DAY ONE — INITIAL SESSION</span>
+                <span class="edm-line"></span>
+            </div>
+
+            <!-- EVENT 21:48 -->
+            <div class="event-entry">
+                <div class="event-header">
+                    <span class="event-timestamp">[ 21:48 ]</span>
+                    <span class="event-header-line"></span>
+                    <span class="event-actor human-actor">SECRETARY WARD</span>
+                </div>
+                <div class="event-body">
+                    <p>Secretary Ward opens formal proceedings. With hands folded on the diplomatic table, he addresses Ambassador Lo-rak directly:</p>
+                    <div class="diplomatic-quote human-quote">
+                        <span class="dq-speaker">WARD</span>
+                        <p>"If the Yautja Empire came here peacefully and with diplomatic intent, then I believe the next question is simple — what exactly does your Empire seek from humanity?"</p>
+                    </div>
+                    <div class="event-assessment">
+                        <span class="ea-label">ASSESSMENT</span>
+                        Ward's opening is measured and appropriately non-committal. No concessions implied. Standard diplomatic posture.
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 22:07 -->
+            <div class="event-entry">
+                <div class="event-header">
+                    <span class="event-timestamp">[ 22:07 ]</span>
+                    <span class="event-header-line"></span>
+                    <span class="event-actor alien-actor">AMBASSADOR LO-RAK</span>
+                </div>
+                <div class="event-body">
+                    <p>Ambassador Lo-rak responds. He presents a <strong>three-part offer</strong> on behalf of the Yautja Empire:</p>
+                    <ol class="offer-list">
+                        <li class="offer-item">
+                            <span class="offer-title">GUIDANCE</span>
+                            <span class="offer-desc">Assistance in humanity's transition and orientation into the wider galactic community.</span>
+                        </li>
+                        <li class="offer-item">
+                            <span class="offer-title">TRADE</span>
+                            <span class="offer-desc">Exchange of goods between the two civilizations. Materials and minerals cited as a baseline example.</span>
+                        </li>
+                        <li class="offer-item">
+                            <span class="offer-title">DEFENSE</span>
+                            <span class="offer-desc">Protection of Earth and the Sol system against potential alien threats humanity may face.</span>
+                        </li>
+                    </ol>
+                    <div class="event-assessment">
+                        <span class="ea-label">ASSESSMENT</span>
+                        Ambassador Lo-rak's delivery was calm and deliberate. No posturing or implied coercion observed during the initial offer presentation.
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 22:26 -->
+            <div class="event-entry">
+                <div class="event-header">
+                    <span class="event-timestamp">[ 22:26 ]</span>
+                    <span class="event-header-line"></span>
+                    <span class="event-actor human-actor">SECRETARY WARD</span>
+                </div>
+                <div class="event-body">
+                    <p>Secretary Ward confers briefly via nonverbal communication with military and political advisors present in the chamber. He then responds to the three-part offer.</p>
+                    <div class="response-grid">
+                        <div class="response-item declined">
+                            <span class="ri-offer">GUIDANCE</span>
+                            <span class="ri-verdict declined-badge">DECLINED</span>
+                            <p>Ward cited humanity's commitment to independent advancement and self-determination. Framed as a matter of principle rather than distrust.</p>
+                        </div>
+                        <div class="response-item accepted">
+                            <span class="ri-offer">DEFENSE</span>
+                            <span class="ri-verdict accepted-badge">OPEN FOR DISCUSSION</span>
+                            <p>Ward indicated the governments of Earth are willing to continue dialogue on the matter of external defense.</p>
+                        </div>
+                        <div class="response-item deferred">
+                            <span class="ri-offer">TRADE</span>
+                            <span class="ri-verdict deferred-badge">NOT ADDRESSED</span>
+                            <p>No position stated at this juncture.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 23:12 -->
+            <div class="event-entry">
+                <div class="event-header">
+                    <span class="event-timestamp">[ 23:12 ]</span>
+                    <span class="event-header-line"></span>
+                    <span class="event-actor alien-actor">AMBASSADOR LO-RAK</span>
+                </div>
+                <div class="event-body">
+                    <p>Ambassador Lo-rak elaborates on the Empire's interest in humanity. He states the <strong>Yautja Council's primary motivation</strong> is humanity's notably rapid rate of civilizational progression and what he characterizes as its considerable untapped potential.</p>
+                    <p>He reaffirms the Empire's defensive capability and extends an offer of a <strong>demonstration of force</strong> — framed as a proof of the Empire's genuine capacity to protect the Sol system should it come under threat.</p>
+                </div>
+            </div>
+
+            <!-- DAY TWO MARKER -->
+            <div class="event-day-marker">
+                <span class="edm-line"></span>
+                <span class="edm-label">DAY TWO — SESSION RESUMED</span>
+                <span class="edm-line"></span>
+            </div>
+
+            <!-- EVENT 17:43 -->
+            <div class="event-entry">
+                <div class="event-header">
+                    <span class="event-timestamp">[ 17:43 ]</span>
+                    <span class="event-header-line"></span>
+                    <span class="event-actor human-actor">SECRETARY WARD</span>
+                </div>
+                <div class="event-body">
+                    <p>Secretary Ward declines the offered demonstration of force.</p>
+                    <div class="diplomatic-quote human-quote">
+                        <span class="dq-speaker">WARD</span>
+                        <p>Humanity does not wish for this relationship to begin under conditions that could be interpreted as intimidating — "even friendly intimidation." Future cooperation between the two civilizations should be founded on <strong>trust and diplomacy</strong> rather than a display of military capability.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 17:54 -->
+            <div class="event-entry event-entry-alert">
+                <div class="event-header">
+                    <span class="event-timestamp">[ 17:54 ]</span>
+                    <span class="event-header-line"></span>
+                    <span class="event-actor alien-actor">AMBASSADOR LO-RAK</span>
+                    <span class="event-flag">⚠ BEHAVIORAL ANOMALY</span>
+                </div>
+                <div class="event-body">
+                    <p>Ambassador Lo-rak reacts visibly. <strong>His mandibles begin moving with noticeably elevated agitation.</strong> He issues a clarification: the offer was not intended as intimidation of any form, but rather as a sincere demonstration of the Empire's actual capacity to fulfill its defensive commitment.</p>
+                    <p>His body language at this moment suggested that Ward's characterization had caused <strong>genuine offense.</strong></p>
+                    <div class="event-assessment">
+                        <span class="ea-label">BEHAVIORAL NOTE</span>
+                        This is the first emotionally significant moment observed in the delegation. Noted for behavioral profiling. Mandible agitation appears to correlate with emotional state — specifically offense or frustration. Log for future reference.
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 18:01 -->
+            <div class="event-entry">
+                <div class="event-header">
+                    <span class="event-timestamp">[ 18:01 ]</span>
+                    <span class="event-header-line"></span>
+                    <span class="event-actor human-actor">SECRETARY WARD</span>
+                </div>
+                <div class="event-body">
+                    <p>Secretary Ward recognizes the shift in the ambassador's demeanor and responds with a <strong>formal apology.</strong> He acknowledges the mischaracterization as unintentional, affirms the Empire's strength and the sincerity of its offer, and reiterates that humanity considers diplomacy alone sufficient at this stage of the relationship.</p>
+                    <div class="event-assessment">
+                        <span class="ea-label">ASSESSMENT</span>
+                        Lo-rak's mandible activity subsides following the apology. Composure restored. The apology was accepted. Noted: the Ambassador's emotional sensitivity to perceived slights against the Empire's military capability may constitute a relevant cultural data point.
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 18:08 -->
+            <div class="event-entry">
+                <div class="event-header">
+                    <span class="event-timestamp">[ 18:08 ]</span>
+                    <span class="event-header-line"></span>
+                    <span class="event-actor alien-actor">AMBASSADOR LO-RAK</span>
+                </div>
+                <div class="event-body">
+                    <p>Ambassador Lo-rak accepts the apology and transitions to the second item of the Empire's offer — <strong>trade.</strong> He reiterates the baseline framework: exchange of materials and minerals, with the implicit suggestion that the scope of tradeable goods may extend further pending agreement.</p>
+                </div>
+            </div>
+
+            <!-- EVENT 18:22 -->
+            <div class="event-entry">
+                <div class="event-header">
+                    <span class="event-timestamp">[ 18:22 ]</span>
+                    <span class="event-header-line"></span>
+                    <span class="event-actor human-actor">SECRETARY WARD</span>
+                </div>
+                <div class="event-body">
+                    <p>Secretary Ward <strong>declines the trade offer.</strong> No counter-proposal is made. No grounds for refusal are articulated beyond the polite declination itself.</p>
+                    <div class="event-assessment">
+                        <span class="ea-label">ASSESSMENT</span>
+                        A blanket refusal with no stated rationale and no counter-offer. This is a missed analytical opportunity from a strategic standpoint. Noted for Section IV.
+                    </div>
+                </div>
+            </div>
+
+            <!-- EVENT 20:55 -->
+            <div class="event-entry event-entry-final">
+                <div class="event-header">
+                    <span class="event-timestamp">[ 20:55 ]</span>
+                    <span class="event-header-line"></span>
+                    <span class="event-actor session-close">SESSION CLOSE</span>
+                </div>
+                <div class="event-body">
+                    <p>The first contact meeting formally <strong>adjourns.</strong> Secretary Ward, the human advisory contingent, and all associated personnel depart the chamber and return to their respective assignments. The Yautja delegation's post-meeting disposition was not observed.</p>
+                </div>
+            </div>
+
+        </div><!-- /event-log -->
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ─── 03. TECHNICAL ANOMALY ─────────────────────── -->
+    <section id="section-iii">
+        <h2>03 &mdash; TECHNICAL ANOMALY — EQUIPMENT FAILURE</h2>
+
+        <div class="anomaly-block">
+            <div class="anomaly-block-header">
+                <span>OSC-ISSUE HARDENED BODY CAMERA</span>
+                <span class="anomaly-status">STATUS: TOTAL FAILURE</span>
+            </div>
+            <div class="anomaly-block-body">
+                <p>The reporting officer's body camera — OSC-issue, hardened against standard signal interference — produced no usable footage from the moment the Yautja delegation entered the chamber. Output was uniform static for the duration of the meeting.</p>
+            </div>
+        </div>
+
+        <h3>Possible Explanations — Assessed in Order of Likelihood</h3>
+
+        <ol class="anomaly-explanations">
+            <li class="anomaly-explanation">
+                <div class="ae-num">01</div>
+                <div class="ae-content">
+                    <span class="ae-title">PASSIVE ELECTROMAGNETIC FIELD</span>
+                    <p>Generated by Yautja biological physiology or personal equipment — inadvertent interference with no deliberate intent.</p>
+                </div>
+            </li>
+            <li class="anomaly-explanation">
+                <div class="ae-num">02</div>
+                <div class="ae-content">
+                    <span class="ae-title">ACTIVE COUNTERMEASURE</span>
+                    <p>Deliberate suppression of recording technology by the delegation — possibly standard operational practice for all diplomatic engagements.</p>
+                </div>
+            </li>
+            <li class="anomaly-explanation">
+                <div class="ae-num">03</div>
+                <div class="ae-content">
+                    <span class="ae-title">TECHNOLOGY INCOMPATIBILITY</span>
+                    <p>Sufficiently advanced alien technology producing spectrum interference outside the parameters our equipment was built to handle. Failure as a passive byproduct rather than a policy.</p>
+                </div>
+            </li>
+        </ol>
+
+        <div class="anomaly-assessment">
+            <div class="anomaly-assessment-header">OPERATIONAL ASSESSMENT</div>
+            <p>Option 2 is considered most operationally significant regardless of intent. Whether passive or active, the result is the same — the Yautja possess the capability, inherent or deliberate, to deny human recording technology in proximity. <strong>This has direct implications for any future OSC contact or intelligence collection efforts.</strong> Analog documentation methods are recommended as primary for all future engagements until the mechanism is fully understood and countermeasures are developed.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ─── 04. INTELLIGENCE ASSESSMENT ──────────────── -->
+    <section id="section-iv">
+        <h2>04 &mdash; INTELLIGENCE ASSESSMENT</h2>
+
+        <div class="assessment-subsection">
+            <div class="assessment-label">I</div>
+            <div class="assessment-content">
+                <h3>The Empire's Stated Objectives</h3>
+                <p>The Yautja Empire has presented a coherent, internally consistent set of opening positions. Their interest in humanity appears genuine and is framed around humanity's developmental trajectory rather than its current material or military value. The characterization of humanity as a civilization with "untapped potential" suggests the Empire views Earth as a long-term strategic relationship, not an immediate transaction.</p>
+            </div>
+        </div>
+
+        <div class="assessment-subsection">
+            <div class="assessment-label">II</div>
+            <div class="assessment-content">
+                <h3>The Multinational Delegation's Negotiating Posture</h3>
+                <p>Secretary Ward's performance was competent by conventional diplomatic standards. However, his blanket refusal of trade with no counter-proposal, and his characterization of a demonstration of military capability as "intimidation," represent missed analytical opportunities. The refusal of all substantive offers leaves the relationship in a state of undefined openness with no concrete framework established.</p>
+                <div class="event-assessment" style="margin-top:14px;">
+                    <span class="ea-label">OSC NOTE</span>
+                    This outcome is acceptable in the short term. No binding commitments were made on behalf of any human government. The channel remains open.
+                </div>
+            </div>
+        </div>
+
+        <div class="assessment-subsection">
+            <div class="assessment-label">III</div>
+            <div class="assessment-content">
+                <h3>Non-Exclusive Diplomatic Access</h3>
+
+                <div class="critical-finding">
+                    <div class="critical-finding-header">
+                        <span>MOST STRATEGICALLY SIGNIFICANT FINDING — THIS REPORT</span>
+                    </div>
+                    <div class="critical-finding-body">
+                        <p>Prior to the formal session, it was established through indirect observation that the Yautja delegation does not restrict its engagement to the approved multinational body. They are willing to conduct direct dialogue with <strong>any party that initiates contact on its own behalf.</strong></p>
+                        <p style="margin-top:14px;">This means the OSC does not require authorization from, coordination with, or notification of the existing multinational framework to open an independent channel with the Yautja Empire. <strong>The door is open. We need only choose to walk through it.</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="assessment-subsection">
+            <div class="assessment-label">IV</div>
+            <div class="assessment-content">
+                <h3>The Question of Timing</h3>
+                <p>The Council should be made aware that this channel is a perishable opportunity. The current diplomatic climate — characterized by refusal and vague goodwill — will not persist indefinitely. The Yautja Empire extended three offers and received no substantive acceptance on any of them. Entities of this strategic sophistication do not wait without purpose.</p>
+            </div>
+        </div>
+
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ─── 05. RECOMMENDATIONS ──────────────────────── -->
+    <section id="section-v">
+        <h2>05 &mdash; RECOMMENDATIONS</h2>
+        <p class="section-description">Submitted to the Council for deliberation. Priorities assigned by the reporting officer.</p>
+
+        <div class="recommendations-list">
+
+            <div class="recommendation-item immediate">
+                <div class="rec-meta">
+                    <span class="rec-number">01</span>
+                    <span class="rec-priority-badge immediate">IMMEDIATE</span>
+                </div>
+                <div class="rec-body">
+                    <p>Establish a dedicated OSC analytical cell to assess everything known about the Yautja Empire — culture, military capability, political structure — drawing on any intelligence assets with relevant existing collection.</p>
+                </div>
+            </div>
+
+            <div class="recommendation-item short-term">
+                <div class="rec-meta">
+                    <span class="rec-number">02</span>
+                    <span class="rec-priority-badge short-term">SHORT TERM</span>
+                </div>
+                <div class="rec-body">
+                    <p>Develop a framework for an independent OSC back-channel approach to the Yautja Empire. If they will speak with any party that initiates contact, the United States — through the OSC — has both the standing and the strategic interest to be that party.</p>
+                </div>
+            </div>
+
+            <div class="recommendation-item medium-term">
+                <div class="rec-meta">
+                    <span class="rec-number">03</span>
+                    <span class="rec-priority-badge medium-term">MEDIUM TERM</span>
+                </div>
+                <div class="rec-body">
+                    <p>Determine what the OSC can offer the Yautja Empire that the multinational delegation cannot or will not. The existing delegation declined trade, declined guidance, and declined a demonstration of force. <strong>We may not need to decline any of these.</strong></p>
+                </div>
+            </div>
+
+            <div class="recommendation-item ongoing">
+                <div class="rec-meta">
+                    <span class="rec-number">04</span>
+                    <span class="rec-priority-badge ongoing">ONGOING</span>
+                </div>
+                <div class="rec-body">
+                    <p>All future OSC observers assigned to alien contact events are to carry supplemental analog recording equipment as the primary documentation method. Body camera footage cannot be considered reliable in proximity to Yautja personnel or technology.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ─── 06. CLASSIFICATION & DISTRIBUTION ────────── -->
+    <section id="section-vi" class="classification-control">
+        <h2>06 &mdash; CLASSIFICATION &amp; DISTRIBUTION</h2>
+
+        <div class="control-info">
+            <div class="fd-row"><span class="fd-key">Distribution</span><span class="fd-val">Tier 1 Council members only — 11 copies</span></div>
+            <div class="fd-row"><span class="fd-key">Transmission</span><span class="fd-val">No electronic transmission. Physical document only.</span></div>
+            <div class="fd-row"><span class="fd-key">Destruction Protocol</span><span class="fd-val">Immediate upon succession of Council membership</span></div>
+            <div class="fd-row"><span class="fd-key">Classified Items</span><span class="fd-val">Existence of this report · Existence of the observed meeting · Identity of the reporting officer</span></div>
+            <div class="fd-row"><span class="fd-key">Legal Authority</span><span class="fd-val">Title 50 and applicable wartime secrecy statutes. Unauthorized disclosure is prosecutable.</span></div>
+        </div>
+
+        <div class="legal-warning">
+            <p>The existence of this report, the existence of the observed meeting, and the identity of the reporting officer are classified at the UMBRA/OSC level. Unauthorized disclosure is prosecutable under Title 50 and applicable wartime secrecy statutes.</p>
+        </div>
+    </section>
+
+    <!-- APPENDED NOTATION -->
+    <div class="appended-notation">
+        <div class="an-header">
+            <div class="an-header-left">
+                <span class="an-badge">APPENDED NOTATION</span>
+                <span class="an-sub">REPORTING OFFICER — HANDWRITTEN ADDENDUM</span>
+            </div>
+            <span class="an-class">UMBRA/OSC</span>
+        </div>
+        <div class="an-body">
+            <p>"The Republic has always advanced by being willing to act where others hesitate. Every nation at that table declined what was offered. We have not yet declined anything."</p>
+        </div>
+        <div class="an-footer">
+            — Reporting Officer &nbsp;·&nbsp; Appended Notation &nbsp;·&nbsp; OSC-FIR-001
+        </div>
+    </div>
+
+</main>
+
+<!-- ══════════════════════════════════════════
+     DOCUMENT FOOTER
+══════════════════════════════════════════ -->
+<footer class="document-footer">
+    <div class="df-divider">─────────── END REPORT ───────────</div>
+    <p><strong>UMBRA/OSC EYES ONLY</strong></p>
+    <p>OFFICE OF STRATEGIC CONTINUITY &nbsp;·&nbsp; FIELD INTELLIGENCE REPORT &nbsp;·&nbsp; OSC-FIR-001</p>
+    <p class="timestamp">TERMINAL ACCESS LOGGED: <span id="timestamp"></span><span class="boot-cursor" style="font-size:.85em">█</span></p>
+</footer>
+
+<div class="classification-banner bottom">
+    ⚠ &nbsp; UMBRA/OSC EYES ONLY — TIER 1 DISTRIBUTION ONLY &nbsp; ⚠
+</div>
+
+<button class="back-to-top" id="backToTop" title="Back to top" aria-label="Back to top">↑</button>
+
+<!-- ══════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════ -->
+<script>
+/* ── BOOT SEQUENCE ─────────────────────────────── */
+const BOOT_LINES = [
+    { text: 'OSC SECURE TERMINAL INTERFACE  v4.1.7', cls: 'header' },
+    { text: '', cls: 'blank' },
+    { text: 'DOCUMENT SERIES ............. FIELD INTELLIGENCE REPORT', cls: 'normal' },
+    { text: 'DESIGNATION ................. OSC-FIR-001', cls: 'normal' },
+    { text: 'STATUS ...................... FIRST IN CLASS', cls: 'normal' },
+    { text: '', cls: 'blank' },
+    { text: 'AUTHENTICATION PROTOCOL ..... INITIATING', cls: 'normal' },
+    { text: 'BIOMETRIC SCAN .............. VERIFIED', cls: 'success' },
+    { text: 'TIER 1 CLEARANCE ............ CONFIRMED', cls: 'success' },
+    { text: '', cls: 'blank' },
+    { text: 'WARNING: SUBJECT MATTER IS OF UNPRECEDENTED NATURE', cls: 'warning' },
+    { text: 'CONTENTS AUTHORIZED FOR TIER 1 VIEWING ONLY', cls: 'warning' },
+    { text: '', cls: 'blank' },
+    { text: 'DECRYPTION .................. COMPLETE', cls: 'normal' },
+    { text: '>>> ACCESS GRANTED <<<', cls: 'granted' },
+];
+
+(function initBoot() {
+    const overlay = document.getElementById('bootOverlay');
+    const content = document.getElementById('bootContent');
+    let idx = 0, killed = false;
+
+    function addLine() {
+        if (killed) return;
+        if (idx >= BOOT_LINES.length) { setTimeout(hideBoot, 900); return; }
+        const { text, cls } = BOOT_LINES[idx++];
+        const el = document.createElement('div');
+        el.className = 'boot-line ' + cls;
+        el.textContent = text || '\u00A0';
+        content.appendChild(el);
+        requestAnimationFrame(() => el.classList.add('visible'));
+        const delay = cls === 'blank' ? 80 : cls === 'header' ? 300 : cls === 'granted' ? 250 : cls === 'warning' ? 200 : 120;
+        setTimeout(addLine, delay);
+    }
+
+    function hideBoot() {
+        overlay.classList.add('hiding');
+        setTimeout(() => { overlay.style.display = 'none'; }, 700);
+    }
+
+    function skip() { if (killed) return; killed = true; hideBoot(); }
+    overlay.addEventListener('click', skip);
+    document.addEventListener('keydown', skip, { once: true });
+    setTimeout(addLine, 300);
+})();
+
+/* ── SCROLL PROGRESS ───────────────────────────── */
+(function() {
+    const bar = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', () => {
+        const s = document.documentElement.scrollTop;
+        const t = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (t > 0 ? (s / t) * 100 : 0) + '%';
+    }, { passive: true });
+})();
+
+/* ── BACK TO TOP ───────────────────────────────── */
+(function() {
+    const btn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => { btn.classList.toggle('visible', window.scrollY > 600); }, { passive: true });
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+})();
+
+/* ── ACTIVE TOC ────────────────────────────────── */
+(function() {
+    const links = document.querySelectorAll('.toc-link');
+    const sections = [];
+    links.forEach(link => {
+        const el = document.getElementById(link.getAttribute('href').slice(1));
+        if (el) sections.push({ el, link });
+    });
+    const obs = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                links.forEach(l => l.classList.remove('active'));
+                const m = sections.find(s => s.el === entry.target);
+                if (m) m.link.classList.add('active');
+            }
+        });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(({ el }) => obs.observe(el));
+})();
+
+/* ── TIMESTAMP ─────────────────────────────────── */
+document.getElementById('timestamp').textContent =
+    new Date().toLocaleString('en-US', {
+        year:'numeric', month:'2-digit', day:'2-digit',
+        hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false
+    });
+</script>
+</body>
+</html>
